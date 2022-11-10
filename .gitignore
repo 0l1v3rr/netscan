@@ -1,0 +1,36 @@
+### IDE ###
+.vscode/
+.idea/
+
+### Dependencies ###
+vendor/
+coverage.out
+/dist
+.envrc
+
+### Production ###
+/build
+/bin
+
+### Misc ###
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+### Log ###
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+### Binaries ###
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.out
+
+### Test ###
+*.test
