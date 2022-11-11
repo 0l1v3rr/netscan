@@ -36,7 +36,11 @@ func run(cmd *cobra.Command, args []string) {
 
 	network.ScanAll(hosts, func(available bool, host string) {
 		if available {
-			utils.Information(host)
+			if host == localIp.String() {
+				utils.Information(fmt.Sprintf("%s (You)", host))
+			} else {
+				utils.Information(host)
+			}
 			reachableHosts++
 		}
 	})
