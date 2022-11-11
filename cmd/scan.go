@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/0l1v3rr/netscan/internal/network"
 	"github.com/0l1v3rr/netscan/internal/utils"
@@ -28,13 +29,23 @@ func run(cmd *cobra.Command, args []string) {
 
 	fmt.Printf("Network: %v\n", cidr)
 	fmt.Println("Scanning the network...")
+	start := time.Now()
+	reachableHosts := 0
+
 	fmt.Println("\nReachable hosts in your network: ")
 
 	network.ScanAll(hosts, func(available bool, host string) {
 		if available {
 			utils.Information(host)
+			reachableHosts++
 		}
 	})
+
+	elapsed := time.Since(start)
+	fmt.Println("\nThe network has been scanned.")
+	fmt.Printf("Hosts scanned: %v\n", len(hosts))
+	fmt.Printf("Reachable hosts: %v\n", reachableHosts)
+	fmt.Printf("Elapsed time: %v\n", elapsed)
 }
 
 func Execute() {

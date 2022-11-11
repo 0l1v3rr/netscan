@@ -8,7 +8,7 @@ require (
 )
 
 require (
-	github.com/go-ping/ping v1.1.0 // indirect
+	github.com/go-ping/ping v1.1.0
 	github.com/google/uuid v1.2.0 // indirect
 	github.com/inconshreveable/mousetrap v1.0.1 // indirect
 	github.com/mattn/go-colorable v0.1.9 // indirect
