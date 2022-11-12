@@ -13,10 +13,10 @@ import (
 var netscan = &cobra.Command{
 	Use:   "netscan",
 	Short: "The netscan command scans the network you're in to find reachable hosts.",
-	Run:   run,
+	Run:   netscanRun,
 }
 
-func run(cmd *cobra.Command, args []string) {
+func netscanRun(cmd *cobra.Command, args []string) {
 	localIp := network.GetLocalIp()
 	maskBits := network.GetMaskBits(localIp)
 	networkAddr := network.NetworkAddress(localIp, maskBits)
@@ -53,6 +53,12 @@ func run(cmd *cobra.Command, args []string) {
 }
 
 func Execute() {
+	port.Flags().StringVarP(&Host, "host", "o", "", "the host you want to scan (required)")
+	port.Flags().BoolVarP(&ShowClosed, "closed", "c", false, "show the closed ports as well")
+	port.MarkFlagRequired("host")
+
+	netscan.AddCommand(port)
+
 	if err := netscan.Execute(); err != nil {
 		os.Exit(1)
 	}
