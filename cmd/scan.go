@@ -54,6 +54,7 @@ func netscanRun(cmd *cobra.Command, args []string) {
 
 func Execute() {
 	port.Flags().StringVarP(&Host, "host", "o", "", "the host you want to scan (required)")
+	port.Flags().StringVarP(&ToScan, "ports", "p", "", "ports you want to scan directly, separated by commas")
 	port.Flags().BoolVarP(&ShowClosed, "closed", "c", false, "show the closed ports as well")
 	port.MarkFlagRequired("host")
 

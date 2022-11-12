@@ -3,6 +3,7 @@ package network
 import (
 	"fmt"
 	"net"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -26,10 +27,25 @@ func ScanPort(hostname string, port int, dialtime int) bool {
 	return true
 }
 
-func ScanMostKnownPorts(hostname string, dialtime int, c func(port int, isOpen bool)) {
-	for _, port := range Ports {
+func ScanPorts(ports []int, hostname string, dialtime int, c func(port int, isOpen bool)) {
+	for _, port := range ports {
 		c(port, ScanPort(hostname, port, dialtime))
 	}
+}
+
+func ParsePortString(s string) ([]int, error) {
+	splitted := strings.Split(s, ",")
+	var ports []int
+
+	for _, p := range splitted {
+		n, err := strconv.Atoi(p)
+		if err != nil {
+			return []int{}, err
+		}
+		ports = append(ports, n)
+	}
+
+	return ports, nil
 }
 
 func PortService(port int) string {
