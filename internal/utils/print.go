@@ -27,9 +27,9 @@ func Error(message string) {
 
 func Port(port int, open bool) {
 	if open {
-		Information(fmt.Sprintf("%v \tOPEN \t%v", port, network.PortService(port)))
+		Information(fmt.Sprintf("%v  \tOPEN\t\t%v", port, network.PortService(port)))
 		return
 	}
 
-	Error(fmt.Sprintf("%v \tCLOSED \t%v", port, network.PortService(port)))
+	Error(fmt.Sprintf("%v   \tCLOSED  \t%v", port, network.PortService(port)))
 }
