@@ -6,7 +6,7 @@ ifeq ($(OS),Windows_NT)
     BIN = netscan.exe
 endif
 
-default: fmt
+default: build
 
 .PHONY: build
 build:
@@ -18,7 +18,7 @@ run:
 
 .PHONY: test
 test: clean
-	go test -json -v ./... | gotestfmt
+	@go test -json -v ./... | gotestfmt
 
 .PHONY: clean
 clean:
@@ -26,8 +26,8 @@ clean:
 
 .PHONY: vet
 vet:
-	go vet -x ./
+	@go vet -x ./
 
 .PHONY: fmt
 fmt:
-	go fmt -x ./...
+	@go fmt -x ./...
