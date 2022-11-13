@@ -1,10 +1,16 @@
-projectname?=netscan
+PROJECTNAME = netscan
+BIN = netscan
+
+# if the os is Windows then we should generate an exe
+ifeq ($(OS),Windows_NT) 
+    BIN = netscan.exe
+endif
 
 default: fmt
 
 .PHONY: build
 build:
-	@go build -o bin/$(projectname)
+	@go build -o bin/$(BIN)
 
 .PHONY: run
 run:
@@ -16,7 +22,7 @@ test: clean
 
 .PHONY: clean
 clean:
-	@rm -rf coverage.out dist/ $(projectname)
+	@rm -rf coverage.out dist/ $(PROJECTNAME)
 
 .PHONY: vet
 vet:
