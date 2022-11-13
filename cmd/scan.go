@@ -56,6 +56,7 @@ func Execute() {
 	port.Flags().StringVarP(&Host, "host", "o", "", "the host you want to scan (required)")
 	port.Flags().StringVarP(&ToScan, "ports", "p", "", "ports you want to scan directly, separated by commas")
 	port.Flags().BoolVarP(&ShowClosed, "closed", "c", false, "show the closed ports as well")
+	port.Flags().IntVarP(&Dialtime, "dialtime", "t", 5, "the dialtime you want to use")
 	port.MarkFlagRequired("host")
 
 	netscan.AddCommand(port)

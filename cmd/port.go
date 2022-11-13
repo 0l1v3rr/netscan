@@ -13,6 +13,7 @@ var (
 	Host       string
 	ShowClosed bool
 	ToScan     string
+	Dialtime   int
 )
 
 var port = &cobra.Command{
@@ -47,7 +48,7 @@ func portRun(cmd *cobra.Command, args []string) {
 	start := time.Now()
 	openPorts := 0
 
-	network.ScanPorts(ports, Host, 5, func(port int, isOpen bool) {
+	network.ScanPorts(ports, Host, Dialtime, func(port int, isOpen bool) {
 		if isOpen {
 			utils.Port(port, isOpen)
 			openPorts++
