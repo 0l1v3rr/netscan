@@ -59,13 +59,11 @@ func Execute() {
 	port.Flags().IntVarP(&Dialtime, "dialtime", "t", 5, "the dialtime you want to use")
 	port.MarkFlagRequired("host")
 
-	cPing.Flags().StringVarP(&PHost, "host", "o", "", "the host you want to ping (required)")
 	cPing.Flags().IntVarP(&PCount, "count", "c", 4, "the number of packets to send")
 	cPing.Flags().DurationVarP(&PTimeout, "timeout", "t", time.Second*100000, "the timeout of the packets")
 	cPing.Flags().DurationVarP(&PInterval, "interval", "i", time.Second, "the interval")
 	cPing.Flags().IntVarP(&PSize, "size", "s", 24, "the size of the packets")
 	cPing.Flags().IntVarP(&PTtl, "ttl", "l", 64, "TTL")
-	cPing.MarkFlagRequired("host")
 
 	netscan.AddCommand(port)
 	netscan.AddCommand(cPing)

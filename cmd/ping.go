@@ -15,7 +15,6 @@ var cPing = &cobra.Command{
 }
 
 var (
-	PHost     string
 	PCount    int
 	PTimeout  time.Duration
 	PInterval time.Duration
@@ -24,7 +23,12 @@ var (
 )
 
 func pingRun(cmd *cobra.Command, args []string) {
-	pinger, err := ping.NewPinger(PHost)
+	if len(args) < 1 {
+		fmt.Println("Error: Please provide a host to ping.")
+		return
+	}
+
+	pinger, err := ping.NewPinger(args[0])
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
